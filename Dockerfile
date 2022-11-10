@@ -28,6 +28,8 @@ RUN cp /yapi/scripts/start.js ./start.js
 # 执行一些准备工作
 RUN node /yapi/scripts/prepare.js $(pwd)
 
+RUN npm install ykit -g
+
 # 安装依赖
 RUN yarn
 
@@ -45,7 +47,7 @@ RUN rm -rf /yapi/scripts
 
 
 ######## 镜像 ########
-FROM node:12.16.3-alpine3.11
+FROM node:16-alpine3.11
 
 WORKDIR /yapi
 
