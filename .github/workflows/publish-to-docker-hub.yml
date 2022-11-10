@@ -1,9 +1,12 @@
 name: Publish to Docker Hub
 
 on:
-  push:
-    tags:
-      - '*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号：'
+        required: true
+        default: '1.2.0'
 
 jobs:
   release:
@@ -19,10 +22,10 @@ jobs:
         run: |
           VERSION=${GITHUB_REF:10}
           docker login \
-            --username jayfong \
+            --username wanrenzhizun \
             --password ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           docker buildx build \
             --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
             --push \
-            --tag jayfong/yapi:latest \
-            --tag jayfong/yapi:${VERSION} .
+            --tag wanrenzhizun/yapi:latest \
+            --tag wanrenzhizun/yapi:${{github.event.inputs.version}} .
