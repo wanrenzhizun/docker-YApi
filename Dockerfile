@@ -30,6 +30,8 @@ RUN node /yapi/scripts/prepare.js $(pwd)
 
 RUN npm install ykit -g
 
+RUN rm -rf package-lock.json
+
 # 安装依赖
 RUN npm install --production --registry https://registry.npm.taobao.org
 
