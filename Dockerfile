@@ -31,13 +31,13 @@ RUN node /yapi/scripts/prepare.js $(pwd)
 RUN npm install ykit -g
 
 # 安装依赖
-RUN yarn
+RUN npm install --production --registry https://registry.npm.taobao.org
 
 # 清理文件
 RUN node /yapi/scripts/clean.js $(pwd)
 
 # 构建应用
-RUN yarn build-client
+RUN npm run build-client
 
 # 再次清理以删除构建缓存文件
 RUN node /yapi/scripts/clean.js $(pwd)
