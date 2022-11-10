@@ -11,6 +11,7 @@ ENV YAPI_VERSION=1.12.0
 # 编译脚本
 WORKDIR /yapi/scripts
 COPY . .
+RUN npm install -g yarn
 RUN yarn && yarn build
 
 WORKDIR /yapi/vendors
