@@ -28,6 +28,8 @@ RUN cp /yapi/scripts/start.js ./start.js
 # 执行一些准备工作
 RUN node /yapi/scripts/prepare.js $(pwd)
 
+RUN cat /yapi/config.json
+
 # 安装依赖
 RUN yarn
 
