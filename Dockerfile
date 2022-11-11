@@ -28,18 +28,14 @@ RUN cp /yapi/scripts/start.js ./start.js
 # 执行一些准备工作
 RUN node /yapi/scripts/prepare.js $(pwd)
 
-RUN npm install ykit -g
-
-RUN rm -rf package-lock.json
-
 # 安装依赖
-RUN npm install --production --registry https://registry.npm.taobao.org
+RUN yarn
 
 # 清理文件
-RUN node /yapi/scripts/clean.js $(pwd)
+#RUN node /yapi/scripts/clean.js $(pwd)
 
 # 构建应用
-RUN npm run build-client
+RUN yarn build-client
 
 # 再次清理以删除构建缓存文件
 RUN node /yapi/scripts/clean.js $(pwd)
